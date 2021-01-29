@@ -30,9 +30,11 @@ app.get('/api/logout', authCtrl.logout)
 app.post('/api/post', mainCtrl.createPost)
 app.get('/api/posts/:id', mainCtrl.getPosts)
 app.delete('/api/post/:id', mainCtrl.deletePost)
-
 app.post('/api/comment', mainCtrl.createComment)
 app.get('/api/comments/:id', mainCtrl.getComments)
 app.delete('/api/comment/:id', mainCtrl.deleteComment)
+
+app.put('/api/user/:id', mainCtrl.updateUsername)
+app.put(`/api/user/:id`, mainCtrl.updateProfilePic)
 
 app.listen(SERVER_PORT, () => console.log(`running on port ${SERVER_PORT}`))
