@@ -30,6 +30,7 @@ class Login extends Component {
         if (password && password === verPassword) {
             axios.post('/api/register', { username, email, password })
                 .then(res => {
+                  console.log(res.data)
                     this.props.getUser(res.data)
                     this.props.history.push('/')
                 })
