@@ -54,7 +54,7 @@ class Login extends Component {
         return (
             <div className='landing-container'>
                 <section className='authentication-info'>
-                    <h1>Welcome to MemeMountain</h1>
+                  
                     {this.state.registerView
                         ? (
                             <>
