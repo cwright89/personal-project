@@ -1,10 +1,10 @@
 insert into users (
     username,
     email,
-    password,
+    password
 ) values (
     ${username},
     ${email},
-    ${hash},
+    ${hash}
 )
-returning user_id, username, email,;
+returning user_id, username, email;
