@@ -8,7 +8,7 @@ const Header = props => {
            
                 <nav>
                     <Link to='/' className='nav-links'>Home</Link>
-                    <Link to='/about' className='nav-links'>About</Link>
+                    <Link to='/contact' className='nav-links'>Contact</Link>
                     <Link to='/login' className='nav-links'>Login</Link>
                     <Link to='/profile' className='nav-links'>Profile</Link>
                 </nav>
