@@ -12,6 +12,7 @@ class Home extends Component {
             postText: '',
             comments: [],
             commentText: '',
+            username: '',
         }
     }
 
@@ -34,7 +35,7 @@ class Home extends Component {
     }
 
     componentDidMount(){
-        this.getComments()
+        this.getComments();
         this.getPosts()
     }
 
@@ -86,11 +87,11 @@ class Home extends Component {
             <section className='home'>
                 <section className='posts'>
                     <h1>Posts</h1>
-                    <input
+                    <textarea
                         className='post-input'
                         value={this.state.postText}
                         placeholder='Post Here'
-                        onChange={e => this.handleCommentInput(e.target.value)}/>
+                        onChange={e => this.handlePostInput(e.target.value)}/>
                     <button onClick={this.createPost}>Add Post</button>
                     <div className = 'post-flex'>
                         {this.state.comments.map(post => (
@@ -104,7 +105,7 @@ class Home extends Component {
                 <section classname='comments'>
                     
                     <h3>Comments</h3>
-                    <input
+                    <textarea
                         className='comment-input'
                         value={this.state.commentText}
                         placeholder='Comment Here'
@@ -113,7 +114,7 @@ class Home extends Component {
                     <div className = 'comment-flex'>
                         {this.state.comments.map(comment => (
                             <div key={comment.comment_id}>
-                                <div>{comment.comment_text}</div>
+                                <div>{this.state.username} says {comment.comment_text}</div>
                                 <button onClick={() => this.deleteComment(comment.comment_id)}>Delete</button>
                             </div>
                         ))}

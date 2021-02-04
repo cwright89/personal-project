@@ -1,5 +1,8 @@
 require('dotenv').config()
 const express = require('express')
+const router = express.Router()
+const cors = require('cors')
+const nodemailer = require('nodemailer')
 const massive = require('massive')
 const session = require('express-session')
 const authCtrl = require('./controllers/authController')
@@ -7,7 +10,9 @@ const mainCtrl = require('./controllers/mainController')
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 const app = express()
 
+app.use(cors());
 app.use(express.json())
+app.use('/', router);
 app.use(session({
     resave: false,
     saveUninitialized: true,
@@ -22,6 +27,43 @@ massive({
     app.set('db', db)
     console.log('db connected')
 })
+
+const contactEmail = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: "connorwwright1989@gmail.com",
+      pass: "Jessbart14",
+    },
+  });
+  
+  contactEmail.verify((error) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Ready to Send");
+    }
+  });
+
+  router.post("/contact", (req, res) => {
+    const name = req.body.name;
+    const email = req.body.email;
+    const message = req.body.message; 
+    const mail = {
+      from: name,
+      to: "connorwwright1989@gmail.com",
+      subject: "Contact Form Submission",
+      html: `<p>Name: ${name}</p>
+             <p>Email: ${email}</p>
+             <p>Message: ${message}</p>`,
+    };
+    contactEmail.sendMail(mail, (error) => {
+      if (error) {
+        res.json({ status: "ERROR" });
+      } else {
+        res.json({ status: "Message Sent" });
+      }
+    });
+  });
 
 app.post('/api/register', authCtrl.register)
 app.post('/api/login', authCtrl.login)

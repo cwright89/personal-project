@@ -3,7 +3,7 @@ module.exports = {
         const { id, postTitle, postText } = req.body
         const db = req.app.get('db')
 
-        db.post.create_blog_post(id, postTitle, postText)
+        db.blogpost.create_blog_post(id, postTitle, postText)
           .then(() => res.sendStatus(200))
           .catch(err => res.status(500).send(err))
     },
@@ -11,7 +11,7 @@ module.exports = {
         const { id } = req.params
         const db = req.app.get('db')
 
-        db.post.get_user_blog_posts(id)
+        db.blogpost.get_user_blog_posts(id)
           .then(posts => res.status(200).send(posts))
           .catch(err => res.status(500).send(err))
     },
@@ -19,7 +19,7 @@ module.exports = {
         const { id } = req.params
         const db = req.app.get('db')
 
-        db.post.delete_blog_post(id)
+        db.blogpost.delete_blog_post(id)
           .then(() => res.sendStatus(200))
           .catch(err => res.status(500).send(err))
     },
@@ -46,7 +46,7 @@ module.exports = {
         const { id, commentText } = req.body
         const db = req.app.get('db')
 
-        db.post.create_comment(id, commentText)
+        db.comment.create_comment(id, commentText)
           .then(() => res.sendStatus(200))
           .catch(err => res.status(500).send(err))
     },
@@ -54,7 +54,7 @@ module.exports = {
         const { id } = req.params
         const db = req.app.get('db')
 
-        db.post.get_comment(id)
+        db.comment.get_comment(id)
           .then(posts => res.status(200).send(posts))
           .catch(err => res.status(500).send(err))
     },
@@ -62,7 +62,7 @@ module.exports = {
         const { id } = req.params
         const db = req.app.get('db')
 
-        db.post.delete_comment(id)
+        db.comment.delete_comment(id)
           .then(() => res.sendStatus(200))
           .catch(err => res.status(500).send(err))
     }
