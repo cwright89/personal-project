@@ -18,7 +18,7 @@ class Home extends Component {
     }
 
     getPosts = () => {
-        axios.get(`/api/posts/${this.props.user.id}`)
+        axios.get(`/api/posts/${this.props.user.user_id}`)
         .then(res => {
             this.setState({posts: res.data})
         })
@@ -28,7 +28,7 @@ class Home extends Component {
    
 
     getComments = () => {
-        axios.get(`/api/comments/${this.props.user.id}`)
+        axios.get(`/api/comments/${this.props.user.user_id}`)
         .then(res => {
             this.setState({comments: res.data})
         })
@@ -45,7 +45,7 @@ class Home extends Component {
     }
 
     createPost = () => {
-        axios.post(`/api/post`, {id: this.props.user.id, postText: this.state.postText})
+        axios.post(`/api/post`, {id: this.props.user.user_id, postText: this.state.postText})
         .then(() => {
             this.getPosts()
             this.setState({postText: ''})
@@ -66,7 +66,7 @@ class Home extends Component {
     }
 
     createComment = () => {
-        axios.post(`/api/comment`, {id: this.props.user.id, commentText: this.state.commentText})
+        axios.post(`/api/comment`, {id: this.props.user.user_id, commentText: this.state.commentText})
         .then(() => {
             this.getComments()
             this.setState({commentText: ''})
