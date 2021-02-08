@@ -1,23 +1,30 @@
-.header-container {
-    height: 100px;
-    background-color: #343A40;
-    color: #dee2e6;
+.header{
+    height: 124px;
+    background-color: #343a40;
+    color:#Dee2e6;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 0 30px;
-}
+    padding: 0px 150px;
+    cursor: pointer;
+  
+  }
 
-.header-container nav {
-    width: 225px;
-    display: flex;
-    justify-content: space-evenly;
-}
+  .header h1{
+      margin-left: 200px;
+    
+
+  }
+
 
 .nav-links {
     text-decoration: none;
-    color: white;
+    color: #Dee2e6;
     font-size: 24px;
-    justify-content: space-between;
 }
+
+.dropdown {
+    display: none;
+  }
+

@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import './Home.css';
@@ -13,11 +13,12 @@ class Home extends Component {
             comments: [],
             commentText: '',
             username: '',
+
         }
     }
 
     getPosts = () => {
-        axios.get(`/api/posts/${this.props.user_id}`)
+        axios.get(`/api/posts/${this.props.user.id}`)
         .then(res => {
             this.setState({posts: res.data})
         })
@@ -27,7 +28,7 @@ class Home extends Component {
    
 
     getComments = () => {
-        axios.get(`/api/comments/${this.props.user_id}`)
+        axios.get(`/api/comments/${this.props.user.id}`)
         .then(res => {
             this.setState({comments: res.data})
         })
@@ -44,7 +45,7 @@ class Home extends Component {
     }
 
     createPost = () => {
-        axios.post(`/api/post`, {id: this.props.user_id, postText: this.state.postText})
+        axios.post(`/api/post`, {id: this.props.user.id, postText: this.state.postText})
         .then(() => {
             this.getPosts()
             this.setState({postText: ''})
@@ -65,7 +66,7 @@ class Home extends Component {
     }
 
     createComment = () => {
-        axios.post(`/api/comment`, {id: this.props.user_id, commentText: this.state.commentText})
+        axios.post(`/api/comment`, {id: this.props.user.id, commentText: this.state.commentText})
         .then(() => {
             this.getComments()
             this.setState({commentText: ''})
@@ -87,14 +88,19 @@ class Home extends Component {
             <section className='home'>
                 <section className='posts'>
                     <h1>Posts</h1>
-                    <textarea
+                    {this.props.user.is_admin && (
+                        <Fragment>
+                        <textarea
                         className='post-input'
                         value={this.state.postText}
                         placeholder='Post Here'
                         onChange={e => this.handlePostInput(e.target.value)}/>
                     <button onClick={this.createPost}>Add Post</button>
+                        </Fragment>
+                    )}
+                
                     <div className = 'post-flex'>
-                        {this.state.comments.map(post => (
+                        {this.state.posts.map(post => (
                             <div key={post.post_id}>
                                 <div>{post.post_text}</div>
                                 <button onClick={() => this.deletePost(post.post_id)}>Delete</button>
@@ -114,7 +120,7 @@ class Home extends Component {
                     <div className = 'comment-flex'>
                         {this.state.comments.map(comment => (
                             <div key={comment.comment_id}>
-                                <div>{this.state.username} says {comment.comment_text}</div>
+                                <div>{comment.comment_text}</div>
                                 <button onClick={() => this.deleteComment(comment.comment_id)}>Delete</button>
                             </div>
                         ))}
@@ -130,7 +136,7 @@ class Home extends Component {
 
 const mapStateToProps = reduxState => {
     return {
-        user_id: reduxState.user.user_id
+        user: reduxState.user
     }
 }
 
