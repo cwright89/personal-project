@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import React, { useState } from "react";
+import  { useState } from "react";
 import Header from '../../Components/Header/Header'
 import { jsx,} from '@emotion/react/'
 
