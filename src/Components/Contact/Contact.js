@@ -1,4 +1,8 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import React, { useState } from "react";
+import Header from '../../Components/Header/Header'
+import { jsx,} from '@emotion/react/'
 
 const Contact = () => {
   const [status, setStatus] = useState("Submit");
@@ -11,7 +15,7 @@ const Contact = () => {
       email: email.value,
       message: message.value,
     };
-    let response = await fetch("http://localhost:5000/contact", {
+    let response = await fetch("/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
@@ -22,8 +26,19 @@ const Contact = () => {
     let result = await response.json();
     alert(result.status);
   };
+
+
   return (
-    <div>
+    <div
+    css={{
+      backgroundImage: 'url(https://wallpaperaccess.com/full/1210877.jpg)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      height: '150vh',
+
+  }}
+    >
+      <Header />
         <h1>Contact</h1>
         <p>Have suggestions for movies you would like us to review or cover? <br></br>
         Have general questions or feedback? Feel free to reach out to us!</p>

@@ -1,7 +1,13 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import Header from '../../Components/Header/Header'
 import './Home.css';
+// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
+import { jsx,} from '@emotion/react/'
+
 
 
 class Home extends Component {
@@ -84,14 +90,34 @@ class Home extends Component {
 
 
     render(){
+        console.log(this.state.posts)
         return(
-            <section className='home'>
+            <section className='home'
+            css={{
+                backgroundImage: 'url(https://wallpaperaccess.com/full/1562163.jpg)',
+                backgroundSize: 'cover',
+                height: '150vh',
+
+            }}
+            >
+                <Header />
                 <section className='posts'>
-                    <h1>Posts</h1>
+                    <h1
+                    css={{
+                        fontSize: '35px'
+                    }}
+                    >Posts</h1>
                     {this.props.user.is_admin && (
                         <Fragment>
                         <textarea
-                        className='post-input'
+                        // className='post-input'
+                        css={{
+                            width: '600px',
+                            height: '50px',
+                            border: '3px solid #cccccc',
+                            padding: '5px',
+                            fontFamily: 'Tahoma, sans-serif',
+                        }}
                         value={this.state.postText}
                         placeholder='Post Here'
                         onChange={e => this.handlePostInput(e.target.value)}/>
@@ -102,7 +128,21 @@ class Home extends Component {
                     <div className = 'post-flex'>
                         {this.state.posts.map(post => (
                             <div key={post.post_id}>
-                                <div>{post.post_text}</div>
+                                
+                                <div css={{
+                                    backgroundColor: 'transparent',
+                                    marginLeft: 100,
+                                    marginRight: 100,
+                                    color:'#f8f9fa',
+                                    whiteSpace: 'pre-wrap',
+                                    fontSize: '28',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    fontStyle: 'bold',
+                                }}>
+                                    {post.post_text}
+                                
+                                </div>
                                 <button onClick={() => this.deletePost(post.post_id)}>Delete</button>
                             </div>
                         ))}
@@ -110,9 +150,22 @@ class Home extends Component {
                 </section>
                 <section classname='comments'>
                     
-                    <h3>Comments</h3>
+                    <h3
+                    css={{
+                        fontSize: '28px'
+                    }}
+                    >Comments</h3>
                     <textarea
                         className='comment-input'
+                        css={{
+                            width: '600px',
+                            height: '50px',
+                            border: '3px solid #cccccc',
+                            padding: '5px',
+                            fontFamily: 'Tahoma, sans-serif',
+                            marginTop: '10px'
+                    
+                        }}
                         value={this.state.commentText}
                         placeholder='Comment Here'
                         onChange={e => this.handleCommentInput(e.target.value)}/>
@@ -120,7 +173,19 @@ class Home extends Component {
                     <div className = 'comment-flex'>
                         {this.state.comments.map(comment => (
                             <div key={comment.comment_id}>
-                                <div>{comment.comment_text}</div>
+                                <div css={{
+                                    backgroundColor: 'transparent',
+                                    marginLeft: 100,
+                                    marginRight: 100,
+                                    color:'#f8f9fa',
+                                    whiteSpace: 'pre-wrap',
+                                    fontSize: '28',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    fontStyle: 'bold',
+                                }}
+                                
+                                >{comment.comment_text}</div>
                                 <button onClick={() => this.deleteComment(comment.comment_id)}>Delete</button>
                             </div>
                         ))}

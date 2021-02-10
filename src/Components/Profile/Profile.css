@@ -1,7 +1,32 @@
-.profile-picture {
-    height: 350px;
+input {
+    height: 30px;
     width: 350px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 50px;
-}
+    background-color: transparent;
+    color: #495057;
+    border: none;
+    border-bottom: 2px solid #6c757d;
+    margin-bottom: 20px;
+    font-size: 20px;
+    outline: none;
+  }
+
+  .profile-button {
+    height: 30px;
+    width: 350px;
+    background-color: transparent;
+    color: #343a40;
+    border: 2px solid #f8f9fa;
+    border-radius: 15px;
+    font-size: 20px;
+    outline: none;
+  }
+  
+  button:hover {
+    background-color: white;
+    color: #444445;
+  }
+  
+  button:active {
+    background-color: transparent;
+    color: white;
+  }

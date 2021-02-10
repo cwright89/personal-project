@@ -1,8 +1,11 @@
+
 import { Component } from 'react'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { getUser } from '../../Ducks/reducer'
+import Header from '../../Components/Header/Header'
 import './Login.css'
+
 
 class Login extends Component {
     constructor(props) {
@@ -28,7 +31,7 @@ class Login extends Component {
         const { username, email, password, verPassword} = this.state
 
         if (password && password === verPassword) {
-            axios.post('/api/register', { username, email, password })
+            axios.post('/api/register', { username, email, password})
                 .then(res => {
                   console.log(res.data)
                     this.props.getUser(res.data)
@@ -53,7 +56,11 @@ class Login extends Component {
 
     render() {
         return (
-            <div className='landing-container'>
+            <section className='Login'>
+            <Header />
+            <div className='landing-container'
+            >
+            
                 <section className='authentication-info'>
                   
                     {this.state.registerView
@@ -88,18 +95,21 @@ class Login extends Component {
                                     type='password'
                                     placeholder='Verify Password'
                                     onChange={e => this.handleInput(e)} />
-                                <button onClick={this.handleRegister}>Register</button>
+                                
+
+                                <button className='login-button'onClick={this.handleRegister}>Register</button>
                                 <p>Have an account? <span onClick={this.handleToggle}>Login here</span></p>
                             </>
                         )
                         : (
                             <>
-                                <button onClick={this.handleLogin}>Login</button>
+                                <button className='login-button' onClick={this.handleLogin}>Login</button>
                                 <p>Don't have an account? <span onClick={this.handleToggle}>Register here</span></p>
                             </>
                         )}
                 </section>
             </div>
+            </section>
         )
     }
 }
