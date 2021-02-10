@@ -1,0 +1,37 @@
+.contact-button {
+    height: 30px;
+    width: 350px;
+    background-color: transparent;
+    color: #adb5bd;
+    border: 2px solid #f8f9fa;
+    border-radius: 15px;
+    font-size: 20px;
+    outline: none;
+  }
+  
+  button:hover {
+    background-color: white;
+    color: #444445;
+  }
+  
+  button:active {
+    background-color: transparent;
+    color: white;
+  }
+
+  .contact-input {
+    height: 30px;
+    width: 350px;
+    background-color: transparent;
+    color: #dee2e6;
+    border: none;
+    border-bottom: 2px solid #adb5bd;
+    margin-bottom: 20px;
+    font-size: 20px;
+    outline: none;
+    
+  }
+
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #adb5bd;
+  }

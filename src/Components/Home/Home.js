@@ -109,8 +109,8 @@ class Home extends Component {
                     >Posts</h1>
                     {this.props.user.is_admin && (
                         <Fragment>
-                        <textarea
-                        // className='post-input'
+                        <textarea className="post-input"
+                    
                         css={{
                             width: '600px',
                             height: '50px',
@@ -121,7 +121,7 @@ class Home extends Component {
                         value={this.state.postText}
                         placeholder='Post Here'
                         onChange={e => this.handlePostInput(e.target.value)}/>
-                    <button onClick={this.createPost}>Add Post</button>
+                    <button onClick={this.createPost} className="home-button">Add Post</button>
                         </Fragment>
                     )}
                 
@@ -143,7 +143,7 @@ class Home extends Component {
                                     {post.post_text}
                                 
                                 </div>
-                                <button onClick={() => this.deletePost(post.post_id)}>Delete</button>
+                                <button onClick={() => this.deletePost(post.post_id)} className="home-button">Delete</button>
                             </div>
                         ))}
                     </div>
@@ -169,7 +169,7 @@ class Home extends Component {
                         value={this.state.commentText}
                         placeholder='Comment Here'
                         onChange={e => this.handleCommentInput(e.target.value)}/>
-                    <button onClick={this.createComment}>Add Comment</button>
+                    <button onClick={this.createComment} className="home-button">Add Comment</button>
                     <div className = 'comment-flex'>
                         {this.state.comments.map(comment => (
                             <div key={comment.comment_id}>
@@ -185,8 +185,8 @@ class Home extends Component {
                                     fontStyle: 'bold',
                                 }}
                                 
-                                >{comment.comment_text}</div>
-                                <button onClick={() => this.deleteComment(comment.comment_id)}>Delete</button>
+                                >{comment.comment_text}</div><br></br>
+                                <button onClick={() => this.deleteComment(comment.comment_id)} className="home-button">Delete</button>
                             </div>
                         ))}
                     </div>

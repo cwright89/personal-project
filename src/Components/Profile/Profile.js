@@ -74,6 +74,7 @@ class Profile extends Component {
                   : (
                     <div>
                       <input
+                        className="profile-input"
                         value={this.state.username}
                         placeholder='New Username'
                         onChange={e => this.handleInput(e.target.value)} />

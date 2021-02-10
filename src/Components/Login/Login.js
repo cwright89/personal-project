@@ -68,6 +68,7 @@ class Login extends Component {
                             <>
                                 <h3>Register Below</h3>
                                 <input
+                                    className="login-input"
                                     value={this.state.username}
                                     name='username'
                                     placeholder='Username'
@@ -76,11 +77,13 @@ class Login extends Component {
                         )
                         : <h3>Login Below</h3>}
                     <input
+                        className="login-input"
                         value={this.state.email}
                         name='email'
                         placeholder='Email'
                         onChange={e => this.handleInput(e)} />
                     <input
+                        className="login-input"
                         value={this.state.password}
                         name='password'
                         type='password'
@@ -90,6 +93,7 @@ class Login extends Component {
                         ? (
                             <>
                                 <input
+                                    className="login-input"
                                     value={this.state.verPassword}
                                     name='verPassword'
                                     type='password'

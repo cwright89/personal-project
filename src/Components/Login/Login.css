@@ -29,7 +29,7 @@
     cursor: pointer;
 }
 
-input {
+.login-input {
     height: 30px;
     width: 350px;
     background-color: transparent;
