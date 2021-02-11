@@ -7,6 +7,7 @@ const massive = require('massive')
 const session = require('express-session')
 const authCtrl = require('./controllers/authController')
 const mainCtrl = require('./controllers/mainController')
+const path = require('path')
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env
 const app = express()
 
@@ -78,5 +79,11 @@ app.delete('/api/comment/:id', mainCtrl.deleteComment)
 
 app.put('/api/user/:id', mainCtrl.updateUsername)
 app.put(`/api/user/:id`, mainCtrl.updateProfilePic)
+
+app.use(express.static(__dirname + '/../build'))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname,'../build/index.html'))
+})
 
 app.listen(SERVER_PORT, () => console.log(`running on port ${SERVER_PORT}`))
