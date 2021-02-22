@@ -26,7 +26,7 @@ class Profile extends Component {
     }
 
     updateUsername = () => {
-        axios.put(`/api/user/${this.props.users.user_id}`, { username: this.state.username })
+        axios.put(`/api/user/${this.props.user.user_id}`, { username: this.state.username })
             .then(res => {
                 this.props.getUser(res.data[0])
                 this.handleEditView()
